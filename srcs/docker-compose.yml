@@ -1,0 +1,37 @@
+services:
+  nginx:
+    build:
+      context: requirements/nginx
+    ports: 
+      - "4444:443"
+    volumes:
+      - wordpress-db
+    networks:
+      - my-network
+    
+  wordpress:
+    build:
+      context: requirements/wordpress
+    volumes:
+      - wordpress-db
+    networks:
+      - my-network
+
+  mariadb:
+    build:
+      context: requirements/mariadb
+    volumes:
+      - maria-db
+    networks:
+      - my-network
+
+volumes:
+  wordpress-db:
+    name: wordpress-db
+
+  maria-db:
+    name: maria-db
+
+networks:
+  my-network:
+    driver: bridge
