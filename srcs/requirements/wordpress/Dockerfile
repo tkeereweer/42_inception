@@ -1,5 +1,8 @@
-FROM alpine:3.22.3
+FROM debian:12.13-slim
+
+RUN apt update && apt install -y \
+    wget \
+    php-fpm\
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /workspace
-
-RUN apk update && apk add --no-cache wget php-fpm
-

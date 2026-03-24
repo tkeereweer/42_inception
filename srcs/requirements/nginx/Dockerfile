@@ -1,9 +1,12 @@
-FROM alpine:3.22.3
-WORKDIR /workspace
+FROM debian:12.13-slim
 
-RUN apk update && apk add --no-cache nginx
+RUN apt update && apt install -y \
+    nginx \
+    && rm -rf /var/lib/apt/lists/* 
 
 COPY conf/nginx.conf /etc/nginx/
+
+WORKDIR /workspace
 
 EXPOSE 443
 

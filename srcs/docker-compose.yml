@@ -20,8 +20,10 @@ services:
   mariadb:
     build:
       context: requirements/mariadb
+    ports:
+      - "3306:3306"
     volumes:
-      - maria-db
+      - maria-db:/var/lib/mysql
     networks:
       - my-network
 
