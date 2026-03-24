@@ -7,8 +7,8 @@ RUN apt update && apt install -y \
 
 WORKDIR /workspace
 
-COPY conf/build-conf.sh .
+COPY conf/mariadb-conf.sh .
 
 EXPOSE 3306
 
-ENTRYPOINT ["./build-conf.sh"]
+ENTRYPOINT ["./mariadb-conf.sh"]

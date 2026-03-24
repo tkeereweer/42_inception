@@ -18,6 +18,14 @@ y
 y
 EOF
 
+    mariadb -u root <<EOF
+CREATE DATABASE $DB_NAME;
+CREATE USER "$DB_USER"@127.0.0.1 IDENTIFIED BY "$DB_PASSWORD";
+GRANT ALL PRIVILEGES ON $DB_NAME.* TO "$DB_USER"@127.0.0.1;
+FLUSH PRIVILEGES;
+EXIT;
+EOF
+
     mysqladmin -u root -p shutdown
 fi
 

@@ -5,17 +5,23 @@ services:
     ports: 
       - "4444:443"
     volumes:
-      - wordpress-db
+      - wordpress-files
     networks:
       - my-network
+    depends_on:
+      - wordpress
     
   wordpress:
     build:
       context: requirements/wordpress
+    ports:
+      - "9000:9000"
     volumes:
-      - wordpress-db
+      - wordpress-files:/workspace/wordpress
     networks:
       - my-network
+    depends_on:
+      - mariadb
 
   mariadb:
     build:
@@ -29,7 +35,7 @@ services:
 
 volumes:
   wordpress-db:
-    name: wordpress-db
+    name: wordpress-files
 
   maria-db:
     name: maria-db
