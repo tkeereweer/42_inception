@@ -7,6 +7,8 @@ RUN apt update && apt install -y \
 
 WORKDIR /workspace
 
+COPY conf/my.cnf /etc/mysql/my.cnf
+
 COPY --chmod=+x conf/mariadb-conf.sh .
 
 EXPOSE 3306
