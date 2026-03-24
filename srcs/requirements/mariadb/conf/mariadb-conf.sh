@@ -1,11 +1,12 @@
 #!/bin/bash
 
-if [ ! -d "/var/lib/mysql/mysql" ]; then
+if [ ! -f "/var/lib/mysql/ibdata1" ]; then
+    echo "Entry setup block"
     mysql_install_db --user=mysql --datadir=/var/lib/mysql
-
+    echo "Installed db"
     mysqld_safe --datadir=/var/lib/mysql --port=3306 &
-    sleep 3
-
+    sleep 7
+    echo "Deamon launched"
     mysql_secure_installation <<EOF
 
 n
@@ -19,19 +20,15 @@ y
 EOF
 
     mariadb -u root <<EOF
-CREATE DATABASE $DB_NAME;
-CREATE USER "$DB_USER"@127.0.0.1 IDENTIFIED BY "$DB_PASSWORD";
+CREATE DATABASE IF NOT EXISTS $DB_NAME;
+CREATE USER IF NOT EXISTS "$DB_USER"@127.0.0.1 IDENTIFIED BY "$DB_PASSWORD";
 GRANT ALL PRIVILEGES ON $DB_NAME.* TO "$DB_USER"@127.0.0.1;
 FLUSH PRIVILEGES;
-EXIT;
 EOF
 
-    mysqladmin -u root -p shutdown
+   mysqladmin -u root -pTest123 shutdown
+
 fi
 
-exec mariadb --user=mysql
-
-
-
-
-
+echo "Went straight to exec"
+exec mariadbd --user=mysql
