@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p /run/mysqld
+
 if [ ! -f "/var/lib/mysql/ibdata1" ]; then
     echo "Entry setup block"
     mysql_install_db --user=mysql --datadir=/var/lib/mysql
