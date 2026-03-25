@@ -51,7 +51,7 @@ networks:
 
 secrets:
   ssl-key:
-    file: ../sercrets/inception.key
+    file: ../secrets/inception.key
 
 # docker run --rm --network=my-network -p 3306:3306 --env-file=../../.env -v maria-db:/var/lib/mysql srcs-mariadb
 # docker run --rm --network=my-network -p 9000:9000 --env-file=../../.env -v wordpress-files:/workspace/wordpress srcs-wordpress
