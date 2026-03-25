@@ -1,16 +1,18 @@
 services:
-  # nginx:
-  #   build:
-  #     context: requirements/nginx
-  #   ports: 
-  #     - "4444:443"
-  #   volumes:
-  #     - wordpress-files
-  #   networks:
-  #     - my-network
-  #   env_file: .env
-  #   depends_on:
-  #     - wordpress
+  nginx:
+    build:
+      context: requirements/nginx
+    ports: 
+      - "4444:443"
+    volumes:
+      - wordpress-files:/data/www
+    networks:
+      - my-network
+    env_file: .env
+    secrets:
+      - ssl-key
+    depends_on:
+      - wordpress
     
   wordpress:
     build:
@@ -18,7 +20,7 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - wordpress-files:/workspace/wordpress
+      - wordpress-files:/wordpress
     networks:
       - my-network
     env_file: .env
@@ -46,6 +48,10 @@ volumes:
 networks:
   my-network:
     driver: bridge
+
+secrets:
+  ssl-key:
+    file: ../sercrets/inception.key
 
 # docker run --rm --network=my-network -p 3306:3306 --env-file=../../.env -v maria-db:/var/lib/mysql srcs-mariadb
 # docker run --rm --network=my-network -p 9000:9000 --env-file=../../.env -v wordpress-files:/workspace/wordpress srcs-wordpress

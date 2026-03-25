@@ -6,8 +6,10 @@ RUN apt update && apt install -y \
 
 COPY conf/nginx.conf /etc/nginx/
 
-WORKDIR /workspace
+COPY conf/inception.crt .
+
+COPY --chmod=+x conf/run-nginx.sh
 
 EXPOSE 443
 
-ENTRYPOINT ["rc-service", "nginx", "start"]
+ENTRYPOINT ["./run-nginx.sh"]
