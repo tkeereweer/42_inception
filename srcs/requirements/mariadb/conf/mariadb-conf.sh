@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mkdir -p /run/mysqld
+chown -R mysql:mysql /run/mysqld
 
 if [ ! -f "/var/lib/mysql/ibdata1" ]; then
     echo "Entry setup block"
