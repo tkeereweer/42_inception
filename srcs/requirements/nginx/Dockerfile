@@ -6,7 +6,7 @@ RUN apt update && apt install -y \
 
 COPY conf/nginx.conf /etc/nginx/
 
-COPY conf/inception.crt .
+COPY conf/inception.crt /etc/nginx/
 
 COPY --chmod=+x conf/run-nginx.sh .
 
