@@ -7,6 +7,8 @@ RUN apt update && apt install -y \
     php-fpm\
     && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /var/www/html
+
 COPY --chmod=+x conf/build-wp.sh .
 
 RUN ./build-wp.sh

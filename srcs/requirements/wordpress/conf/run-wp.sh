@@ -5,6 +5,10 @@ do
     sleep 2
 done
 
+if [ ! -f /var/www/html/wp-load.php ]; then
+    wp core download --allow-root
+fi
+
 if ! wp core is-installed --allow-root; then
     wp core install --allow-root --url=$DOMAIN_NAME --title="My Wordpress" --admin_user=$WP_USER \
         --admin_password=$WP_PASSWORD --admin_email=$WP_EMAIL
