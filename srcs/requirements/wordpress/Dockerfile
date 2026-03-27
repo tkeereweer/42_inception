@@ -5,6 +5,7 @@ RUN apt update && apt install -y \
     mariadb-client \
     php-mysql \
     php-fpm\
+    php-redis \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/html
