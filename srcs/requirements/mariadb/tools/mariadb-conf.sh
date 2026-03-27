@@ -3,7 +3,7 @@
 mkdir -p /run/mysqld
 chown -R mysql:mysql /run/mysqld
 
-if [ ! -f "/var/lib/mysql/ibdata1" ]; then
+if [ ! -d "/var/lib/mysql/mysql" ]; then
     echo "Entry setup block"
     mysql_install_db --user=mysql --datadir=/var/lib/mysql
     echo "Installed db"

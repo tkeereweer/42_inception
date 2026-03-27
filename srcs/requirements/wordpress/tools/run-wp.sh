@@ -7,6 +7,9 @@ done
 
 if [ ! -f /var/www/html/wp-load.php ]; then
     wp core download --allow-root
+
+    wp config create --allow-root --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASSWORD \
+        --dbhost=$DB_HOST
 fi
 
 if ! wp core is-installed --allow-root; then

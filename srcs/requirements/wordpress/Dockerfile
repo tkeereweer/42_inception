@@ -9,13 +9,11 @@ RUN apt update && apt install -y \
 
 WORKDIR /var/www/html
 
-COPY --chmod=+x conf/build-wp.sh .
+COPY --chmod=+x tools/build-wp.sh .
 
 RUN ./build-wp.sh
 
-COPY --chmod=+x conf/wp-config.php .
-
-COPY --chmod=+x conf/run-wp.sh .
+COPY --chmod=+x tools/run-wp.sh .
 
 COPY conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
 

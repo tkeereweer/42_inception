@@ -8,7 +8,7 @@ COPY conf/nginx.conf /etc/nginx/
 
 COPY conf/inception.crt /etc/nginx/
 
-COPY --chmod=+x conf/run-nginx.sh .
+COPY --chmod=+x tools/run-nginx.sh .
 
 EXPOSE 443
 

@@ -13,6 +13,7 @@ services:
       - ssl-key
     depends_on:
       - wordpress
+    restart: unless-stopped
     
   wordpress:
     build:
@@ -25,7 +26,9 @@ services:
       - my-network
     env_file: .env
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
+    restart: unless-stopped
 
   mariadb:
     build:
@@ -37,6 +40,7 @@ services:
     networks:
       - my-network
     env_file: .env
+    restart: unless-stopped
 
 volumes:
   wordpress-files:
