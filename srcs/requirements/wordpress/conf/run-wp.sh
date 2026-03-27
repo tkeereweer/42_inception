@@ -14,4 +14,7 @@ if ! wp core is-installed --allow-root; then
         --admin_password=$WP_PASSWORD --admin_email=$WP_EMAIL
 fi
 
+mkdir -p /run/php /var/www/html
+chown -R www-data:www-data /var/www/html
+
 exec /usr/sbin/php-fpm8.2 -F
