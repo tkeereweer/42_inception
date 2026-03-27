@@ -48,6 +48,16 @@ services:
     env_file: .env
     restart: unless-stopped
 
+  adminer:
+    build:
+      context: requirements/adminer
+    networks:
+      - my-network
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    restart: unless-stopped
+
 volumes:
   wordpress-files:
     name: wordpress-files
