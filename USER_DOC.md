@@ -23,8 +23,8 @@ Inception is a self-contained web infrastructure running inside Docker container
 
 Before running the project you need:
 
-- [Docker](https://docs.docker.com/get-docker/) installed
-- [Docker Compose](https://docs.docker.com/compose/install/) installed (included with Docker Desktop)
+- Docker] installed
+- Docker Compose installed (included with Docker Desktop)
 - A `.env` file in the `srcs/` directory (see [Configuration](#configuration) below)
 
 ---

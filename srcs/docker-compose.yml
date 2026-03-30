@@ -2,6 +2,8 @@ services:
     nginx:
         build:
             context: requirements/nginx
+        image: nginx
+        pull_policy: build
         ports:
             - "443:443"
         volumes:
@@ -18,6 +20,8 @@ services:
     wordpress:
         build:
             context: requirements/wordpress
+        image: wordpress
+        pull_policy: build
         volumes:
             - wordpress-files:/var/www/html
         networks:
@@ -33,6 +37,8 @@ services:
     mariadb:
         build:
             context: requirements/mariadb
+        image: mariadb
+        pull_policy: build
         volumes:
             - maria-db:/var/lib/mysql
         networks:
@@ -43,6 +49,8 @@ services:
     redis:
         build:
             context: requirements/redis
+        image: redis
+        pull_policy: build
         networks:
             - my-network
         env_file: .env
@@ -51,6 +59,8 @@ services:
     adminer:
         build:
             context: requirements/adminer
+        image: adminer
+        pull_policy: build
         ports:
             - "8080:8080"
         networks:
@@ -63,6 +73,8 @@ services:
     ftp:
         build:
             context: requirements/ftp
+        image: ftp
+        pull_policy: build
         ports:
             - "21:21"
             - "21000-21010:21000-21010"

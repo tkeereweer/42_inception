@@ -17,8 +17,8 @@ Inception is a multi-container Docker infrastructure built around a WordPress si
 
 ## Prerequisites
 
-- [Docker](https://docs.docker.com/get-docker/) (Engine 20.10+)
-- [Docker Compose](https://docs.docker.com/compose/install/) v2
+- Docker (Engine 20.10+)
+- Docker Compose v2
 - `make`
 - An SSL certificate and private key (see [SSL Setup](#ssl-setup) below)
 
