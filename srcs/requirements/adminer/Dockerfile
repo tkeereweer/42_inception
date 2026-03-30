@@ -6,11 +6,15 @@ RUN apt update && apt install -y \
     php-fpm \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /var/www/html
+WORKDIR /var/www/html/adminer
 
-RUN ln -sf /usr/share/adminer/adminer.php /var/www/html/index.php
+COPY --chmod=+x tools/run-adminer.sh .
+
+COPY conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
+
+RUN ln -sf /usr/share/adminer/adminer.php /var/www/html/adminer/index.php
 
 EXPOSE 8080
 
-ENTRYPOINT /usr/sbin/php-fpm8.2 -F
+ENTRYPOINT ["./run-adminer.sh"]
 # ENTRYPOINT ["php", "-S", "0.0.0.0:8080", "-t", "/var/www/html"]

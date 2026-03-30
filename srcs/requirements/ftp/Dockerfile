@@ -8,11 +8,9 @@ COPY --chmod=+x tools/run-ftp.sh /
 
 WORKDIR /var/www/html
 
-COPY conf/vsftpd.conf /etc/vsftpd/vsftpd.conf
+COPY conf/vsftpd.conf /etc/vsftpd.conf
 
 RUN mkdir -p /var/run/vsftpd/empty
-
-RUN echo $FTP_USER | tee -a /etc/vsftpd.userlist
 
 EXPOSE 21 21000-21010
 
