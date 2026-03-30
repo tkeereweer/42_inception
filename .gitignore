@@ -1,3 +1,5 @@
 srcs/.env
 
 secrets/*
+
+srcs/requirements/nginx/conf/inception.crt
