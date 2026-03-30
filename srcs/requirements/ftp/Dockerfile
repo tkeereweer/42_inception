@@ -8,8 +8,8 @@ COPY --chmod=+x tools/run-ftp.sh /
 
 WORKDIR /var/www/html
 
-COPY conf/vsftpd.conf /var/www/html
+COPY conf/vsftpd.conf /etc/vsftpd/vsftpd.conf
 
-EXPOSE 21
+EXPOSE 21 21000-21010
 
 ENTRYPOINT ["/run-ftp.sh"]
