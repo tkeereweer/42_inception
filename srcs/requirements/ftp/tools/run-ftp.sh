@@ -4,6 +4,6 @@ if ! id "$FTP_USER" &>/dev/null; then
     useradd -d /var/www/html -s /bin/sh -M "$FTP_USER"
 fi
 
-echo "$FTP_USER:$FTP_PASS" | chpasswd
+echo "$FTP_USER:$FTP_PASSWORD" | chpasswd
 
 exec vsftpd
