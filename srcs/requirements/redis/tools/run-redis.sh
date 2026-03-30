@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec redis-server
+exec redis-server "etc/redis/redis.conf"

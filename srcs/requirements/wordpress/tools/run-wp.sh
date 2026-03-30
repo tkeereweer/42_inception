@@ -8,14 +8,15 @@ if [ ! -f /var/www/html/wp-load.php ]; then
     
     wp config set WP_CACHE_KEY_SALT mkeerewe.42.fr --allow-root
     wp config set WP_CACHE true --raw --allow-root
-    wp config set WP_CACHE_HOST $REDIS_HOST --allow-root
+    wp config set WP_REDIS_HOST $REDIS_IP --allow-root
+    wp config set WP_REDIS_PORT $REDIS_PORT --raw --allow-root
 fi
 
 if ! wp core is-installed --allow-root; then
     wp core install --allow-root --url=$DOMAIN_NAME --title="My Wordpress" --admin_user=$WP_USER \
         --admin_password=$WP_PASSWORD --admin_email=$WP_EMAIL
     
-    wp user create bob bob@example.com --user_pass="Second_pass"
+    wp user create --allow-root bob bob@example.com --user_pass="Second_pass"
 fi
 
 if ! wp plugin is-installed redis-cache --allow-root; then
@@ -23,7 +24,7 @@ if ! wp plugin is-installed redis-cache --allow-root; then
 fi
 
 if ! wp plugin is-active redis-cache --allow-root; then
-    wp plugin activate redis-cache --allow-root; then
+    wp plugin activate redis-cache --allow-root
 fi
 
 if [ ! -f wp-content/object-cache.php ]; then

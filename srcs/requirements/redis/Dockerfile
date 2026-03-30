@@ -11,6 +11,6 @@ COPY --chmod=+x tools/run-redis.sh .
 EXPOSE 6379
 
 HEALTHCHECK --start-period=2s --interval=15s --timeout=15s --retries=3 \
-    CMD redis-cli -h $REDIS_HOST -p 6379 ping || exit 1
+    CMD redis-cli -h $REDIS_IP -p $REDIS_PORT ping || exit 1
 
 ENTRYPOINT ["./run-redis.sh"]
